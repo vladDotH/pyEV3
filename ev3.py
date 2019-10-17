@@ -8,7 +8,6 @@ class Ev3:
         class Mode:
             first = 0
             second = 0
-            pass
 
         speed = Mode()
         start = Mode()
