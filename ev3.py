@@ -32,19 +32,19 @@ class Ev3:
         FLOAT = 0
         BREAK = 1
 
-    def __init__(self, portName: str) -> None:
-        self.ev3 = Serial(portName, baudrate=9600,
+    def __init__(self, port_name):
+        self.ev3 = Serial(port_name, baudrate=9600,
                           stopbits=serial.STOPBITS_ONE,
                           parity=serial.PARITY_NONE,
                           bytesize=serial.EIGHTBITS)
 
         time.sleep(1)
 
-    def setSpeed(self, motor, val):
-        message = self.packMsg(self.MsgType.speed)
+    def set_speed(self, motor, val):
+        message = self.pack_msg(self.MsgType.speed)
 
         if val < 0:
-            val = 256 - abs( val )
+            val = 256 - abs(val)
 
         for i in range(0, 3):
             message.append(0)
@@ -53,11 +53,10 @@ class Ev3:
         message[10] = 129
         message[11] = val
 
-
         self.send(message)
 
     def start(self, motor):
-        message = self.packMsg(self.MsgType.start)
+        message = self.pack_msg(self.MsgType.start)
 
         for i in range(0, 1):
             message.append(0)
@@ -67,7 +66,7 @@ class Ev3:
         self.send(message)
 
     def stop(self, motor, type):
-        message = self.packMsg(self.MsgType.stop)
+        message = self.pack_msg(self.MsgType.stop)
 
         for i in range(0, 2):
             message.append(0)
@@ -80,10 +79,9 @@ class Ev3:
     def send(self, message):
         self.ev3.write(bytes(message))
 
-    def packMsg(self, mode):
-        msg = []
-        for i in range(0, 9):
-            msg.append(0)
+    @staticmethod
+    def pack_msg(mode):
+        msg = [0 for i in range(0, 9)]
 
         msg[0] = mode.first
         msg[7] = mode.second
