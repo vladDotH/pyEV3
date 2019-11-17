@@ -1,12 +1,12 @@
 Библиотека для управления блоком 'LEGO™ EV3' посредтством Bluetooth соединения. 
 
-####Установка
+#Установка
 
 `pip install ev3-python`
 или
 `pip3 install ev3-python`
 
-####Использование
+#Использование
 
 ```python
 from ev3 import Ev3
