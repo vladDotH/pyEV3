@@ -36,7 +36,11 @@ class Ev3:
 
     def set_speed(self, motor, val):
         message = self._pack_msg(self._MsgType.speed)
-
+        
+        if val > 127:
+            val = 127
+        if val < -127:
+            val = -127
         if val < 0:
             val = 256 - abs(val)
 
