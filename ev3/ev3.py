@@ -42,7 +42,7 @@ class Ev3:
         if val < -127:
             val = -127
         if val < 0:
-            val = 256 - abs(val)
+            val = 255 - abs(val)
 
         for i in range(0, 3):
             message.append(0)
