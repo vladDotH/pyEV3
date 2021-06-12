@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ev3-python",
-    version="0.0.1",
+    version="0.0.2",
     author="Vladislav Bolkunov",
     author_email="vladbolkunovv@gmail.com",
     description="Simple library to control 'Lego™ EV3' controller",
@@ -19,7 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.0',
-    install_requres=[
+    requires=[
         'pyserial'
     ]
 )
