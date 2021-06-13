@@ -32,12 +32,18 @@ class Ev3:
         P3 = 0b10
         P4 = 0b11
 
+    class Encoders:
+        A = 0b10000
+        B = 0b10001
+        C = 0b10010
+        D = 0b10011
+
     class _Reply:
         Need = 0
         No_Need = 128
 
     _RAW_SIZE = 9
-    _BUTTON_THRESHOLD = 1000
+    _BUTTON_THRESHOLD = 0x400
 
     @staticmethod
     def clip(val, _min, _max):
@@ -95,6 +101,9 @@ class Ev3:
         return self.getRaw(port)
 
     def color(self, port):
+        return self.getRaw(port)
+
+    def encoder(self, port):
         return self.getRaw(port)
 
     def _send(self, message):
